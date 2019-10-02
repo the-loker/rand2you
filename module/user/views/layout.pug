@@ -1,0 +1,33 @@
+extends /_layout
+
+block head
+    meta(charset='utf-8')
+    meta(name ='description' content='')
+    meta(name='author' content='')
+    meta(name='keywords' content='')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+
+    link(rel='stylesheet', href='/css/style.css')
+
+    title= siteName + titleSeparator + title
+
+block body
+
+    div.wrapper
+        div.header
+            a.homeLink(href='/')
+
+            include /_includes/_headerMenu
+
+        div.container
+            div.content
+                include includes/userMenu
+                block content
+
+        div.footer
+            include /_includes/_footerMenu
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/socket.js")
+    script(src='/js/user.js')

@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+
+    div.adminUsersList
+        ul
+            each user in users.docs
+                li.adminUserItem
+                    span
+                        a(href='/admin/user/'+ user._id) #{user.login}
+                    span Sign Up: #{moment(user.signupDate).format('H:mm:ss L')}

@@ -1,0 +1,8 @@
+extends _layout
+
+block body
+    h2 #{status}: #{message}
+    if error
+        pre #{error.stack}
+
+
