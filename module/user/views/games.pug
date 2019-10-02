@@ -1,0 +1,45 @@
+extends layout
+
+block content
+
+    include includes/gamesMenu
+
+    if games
+
+        div.gamesContainer
+
+            each game in games
+
+                -var profit = (game.rateSize * game.userLimit) - (game.rateSize * game.userLimit) * 30 / 100 ;
+                -var rateOpen = game.userLimit - game.rates.length;
+
+                div.gameSticker
+
+                    ul.rateList
+
+                        each rate in game.rates
+                            li
+                                a.rateItem(href='/user/' + rate.userId._id, title=rate.userId.login)
+                                    img(src='/upload/avatars/user.png')
+
+                        -for(var g = 0; g < rateOpen; g++)
+                            li
+                                a.rateItem(title='')
+                                    img(src='/img/norate.svg')
+                    div(class='game_status') статус:
+                        span(class=game.status + '_game') #{game.status}
+
+                    a.btnLink(href='/user/game/' + game._id) Перейти
+
+
+    else
+        if gamestatus == 'active'
+            p На данный момент нет активных игр.
+        if gamestatus == 'completed'
+            p На данный момент нет завершенных игр.
+        if gamestatus == 'pause'
+            p На данный момент нет приостановленных игр.
+        if gamestatus == 'verify'
+            p На данный момент игр на проверке нет.
+        if gamestatus == 'parsing'
+            p На данный момент нет игр находящихся в обработке.

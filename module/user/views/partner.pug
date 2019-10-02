@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+    div.partner
+        h3 Ваша партнёрская ссылка
+        div.partner_link
+            span http://#{host}?r=#{userId}
+
+        if referrals.length > 0
+            h3 Привлеченные вами пользователи
+            div.referals_list
+                ul.reset
+                    each data in referrals
+                        li
+                            a(href='') #{data.login}

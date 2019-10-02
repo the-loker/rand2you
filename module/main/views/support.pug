@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+    if user
+
+        include _includes/supportUserForm
+
+    else
+
+        include _includes/supportGuestForm
