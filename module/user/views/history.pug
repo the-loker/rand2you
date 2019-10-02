@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    each data in history.docs
+        div.hystoryBlock
+            div !{data.fullDesc}
+            div #{moment(data.date).fromNow()}
+
+    if history.pages > 1
+        != pagination

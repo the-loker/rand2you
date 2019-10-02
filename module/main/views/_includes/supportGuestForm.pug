@@ -1,0 +1,38 @@
+form(action='', method='post', class='support_form')
+
+    div.support_label_groupe
+        label
+            div.support_label Ваш e-mail
+                = ' '
+                span *
+            input(type='email', name='email')
+
+        if errors && errors.email
+            span.support_error= errors.email.msg
+
+        label
+            div.support_label Тема сообщения
+                = ' '
+                span *
+            input(type='text', name='theme', style='width:350px')
+
+        if errors && errors.theme
+            span.support_error= errors.theme.msg
+    label
+        div.support_label Описание проблемы, идеи или предложения
+            = ' '
+            span *
+        textarea(name='text')
+
+        if errors && errors.text
+            span.support_error= errors.text.msg
+
+    div.captcha
+        div.captcha-container
+            != captchaRender
+
+        if errors && errors.captcha
+            span.support_error= errors.captcha.msg
+
+    div
+        button(type='submit') Отправить

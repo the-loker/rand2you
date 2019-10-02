@@ -1,0 +1,26 @@
+ul.adminMenu
+    li.menuList
+        a.menuItem Новости
+        ul.adminMenuList
+            li
+                a(href='/admin/posts') Все новости
+            li
+                a(href='/admin/posts/create') Добавить новость
+    li.menuList
+        a(href="/admin/users") Пользователи
+    li.menuList
+        a.menuItem Игры
+        ul.adminMenuList
+            li
+                a(href="/admin/games") Все игры
+            li
+                a(href='/admin/games/create') Добавить игру
+    li
+        a(href="/admin/payments") Платежи
+    li.menuList
+        a.menuItem Настройки
+        ul.adminMenuList
+            li
+                a(href="/admin/settings") Общие настройки
+            li
+                a(href="/admin/settings") Настройки приложения

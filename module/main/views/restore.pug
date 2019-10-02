@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+    if(flash.successResetPassword)
+        div #{flash.successResetPassword}
+
+    if(flash.failRestoreMail)
+        div #{flash.failRestoreMail}
+
+    if(flash.successRestore)
+        div #{flash.successRestore}
+
+    form#authForm(method='post', action='/restore')
+
+        input(type='email', name='email', placeholder='E-mail')
+        if errors && errors.email
+            span.authError= errors.email.msg
+
+        div.captcha
+            div.captcha-container
+                != captchaRender
+
+        if errors && errors.captcha
+            span.authError= errors.captcha.msg
+
+        button(type='submit') Востановить
