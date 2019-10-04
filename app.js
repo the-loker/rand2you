@@ -18,6 +18,7 @@ const libs          = require('./libs');
 const main          = require('./module/main');
 const user          = require('./module/user');
 const admin         = require('./module/admin');
+const api           = require('./module/api');
 
 const app           = express();
 
@@ -59,12 +60,21 @@ app.use(session({
 }));
 app.use(flash({ locals: 'flash' }));
 
+app.use(function(req, res, next) {
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+
+});
+
 app.use(useragent.express());
 app.use(middleware.partner.setPartnerCookie);
 app.use(middleware.auth.loadUserData);
 app.use('/', main);
 app.use('/user', middleware.auth.checkAutorize, user);
 app.use('/admin', middleware.auth.checkAutorize, admin);
+app.use('/api', api);
 
 app.use(middleware.error.notFound);
 app.use(app.get('env') === 'development' ? middleware.error.development : middleware.error.production);
